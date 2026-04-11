@@ -23,7 +23,7 @@ class UnidadeCurricular(models.Model):
     capa = models.ImageField(upload_to='capa_unidades/')
 
     licenciatura = models.ForeignKey(Licenciatura, on_delete=models.CASCADE)
-    docentes = models.ManyToManyField('Docente')
+    docentes = models.ManyToManyField('Docente', blank = True)
 
     def __str__(self):
         return self.nome
@@ -32,7 +32,7 @@ class UnidadeCurricular(models.Model):
 class Docente(models.Model):
     nome = models.CharField(max_length=200)
     mail = models.EmailField()
-    websitePessoal = models.URLField()
+    resumo = models.TextField(blank=True, null=True)
     foto = models.ImageField(upload_to='fotos_docentes/')
 
     def __str__(self):
@@ -57,7 +57,7 @@ class Competencia(models.Model):
     descricao = models.TextField()
     expertise = models.IntegerField()
 
-    tecnologias = models.ManyToManyField(Tecnologia)
+    tecnologias = models.ManyToManyField(Tecnologia, blank = True)
 
     def __str__(self):
         return self.nome
@@ -74,8 +74,8 @@ class Projeto(models.Model):
     avaliacao = models.IntegerField()
 
     UnidadeCurricular = models.ForeignKey(UnidadeCurricular, on_delete=models.CASCADE)
-    tecnologias = models.ManyToManyField(Tecnologia)
-    competencias = models.ManyToManyField('Competencia')
+    tecnologias = models.ManyToManyField(Tecnologia, blank = True)
+    competencias = models.ManyToManyField(Competencia, blank = True)
 
     def __str__(self):
         return self.nome
@@ -89,8 +89,8 @@ class Gamejam(models.Model):
     imagem = models.ImageField(upload_to='imagens_gamejams/')
     classificacao = models.IntegerField()
 
-    tecnologias = models.ManyToManyField(Tecnologia)
-    competencias = models.ManyToManyField(Competencia)
+    tecnologias = models.ManyToManyField(Tecnologia, blank = True)
+    competencias = models.ManyToManyField(Competencia, blank = True)
 
     def __str__(self):
         return self.nome
@@ -103,7 +103,7 @@ class Formacao(models.Model):
     dataInicio = models.DateField()
     dataFim = models.DateField()
 
-    competencias = models.ManyToManyField(Competencia)
+    competencias = models.ManyToManyField(Competencia, blank = True)
 
     def __str__(self):
         return self.nome
@@ -142,9 +142,9 @@ class TFC(models.Model):
 
     autores = models.ManyToManyField(Autor)
     licenciatura = models.ForeignKey(Licenciatura, on_delete=models.CASCADE)
-    orientadores = models.ManyToManyField(Docente)
-    tecnologias = models.ManyToManyField(Tecnologia)
-    competencias = models.ManyToManyField(Competencia)
+    orientadores = models.ManyToManyField(Docente, blank = True)
+    tecnologias = models.ManyToManyField(Tecnologia, blank = True)
+    competencias = models.ManyToManyField(Competencia, blank = True)
 
     def __str__(self):
         return self.titulo
