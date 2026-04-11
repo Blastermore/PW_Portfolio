@@ -37,3 +37,14 @@ class Docente(models.Model):
 
     def __str__(self):
         return self.nome
+    
+#Modelo para um tecnologia
+class Tecnologia(models.Model):
+    nome = models.CharField(max_length=200)
+    expertise = models.IntegerField()
+    logo = models.ImageField(upload_to='logos_tecnologias/')
+    websiteOficial = models.URLField()
+    review = models.TextField()
+
+    def __str__(self):
+        return self.nome
