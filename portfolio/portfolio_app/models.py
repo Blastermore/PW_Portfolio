@@ -50,7 +50,19 @@ class Tecnologia(models.Model):
 
     def __str__(self):
         return self.nome
+
+#Modelo para uma COmpetencia  
+class Competencia(models.Model):
+    nome = models.CharField(max_length=200)
+    descricao = models.TextField()
+    expertise = models.IntegerField()
+
+    tecnologias = models.ManyToManyField(Tecnologia)
+
+    def __str__(self):
+        return self.nome
     
+
 #Modelo para um Projeto
 class Projeto(models.Model):
     nome = models.CharField(max_length=200)
@@ -68,15 +80,6 @@ class Projeto(models.Model):
     def __str__(self):
         return self.nome
 
-#Modelo para uma COmpetencia  
-class Competencia(models.Model):
-    nome = models.CharField(max_length=200)
-    descricao = models.TextField()
-    expertise = models.IntegerField()
-
-    def __str__(self):
-        return self.nome
-    
 #Modelo para uma Gamejam
 class Gamejam(models.Model):
     nome = models.CharField(max_length=200)
@@ -87,6 +90,19 @@ class Gamejam(models.Model):
     classificacao = models.IntegerField()
 
     tecnologias = models.ManyToManyField(Tecnologia)
+    competencias = models.ManyToManyField(Competencia)
+
+    def __str__(self):
+        return self.nome
+    
+#Modelo para uma Formação
+class Formacao(models.Model):
+    nome = models.CharField(max_length=200)
+    descricao = models.TextField()
+    instituicao = models.CharField(max_length=200)
+    dataInicio = models.DateField()
+    dataFim = models.DateField()
+
     competencias = models.ManyToManyField(Competencia)
 
     def __str__(self):
