@@ -67,11 +67,27 @@ class Projeto(models.Model):
 
     def __str__(self):
         return self.nome
-    
+
+#Modelo para uma COmpetencia  
 class Competencia(models.Model):
     nome = models.CharField(max_length=200)
     descricao = models.TextField()
     expertise = models.IntegerField()
+
+    def __str__(self):
+        return self.nome
+    
+#Modelo para uma Gamejam
+class Gamejam(models.Model):
+    nome = models.CharField(max_length=200)
+    nomeJogo = models.CharField(max_length=200)
+    descricao = models.TextField()
+    linkItch = models.URLField()
+    imagem = models.ImageField(upload_to='imagens_gamejams/')
+    classificacao = models.IntegerField()
+
+    tecnologias = models.ManyToManyField(Tecnologia)
+    competencias = models.ManyToManyField(Competencia)
 
     def __str__(self):
         return self.nome
