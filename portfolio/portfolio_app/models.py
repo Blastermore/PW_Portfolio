@@ -27,3 +27,13 @@ class UnidadeCurricular(models.Model):
 
     def __str__(self):
         return self.nome
+    
+#Modelo para um Docente
+class Docente(models.Model):
+    nome = models.CharField(max_length=200)
+    mail = models.EmailField()
+    websitePessoal = models.URLField()
+    foto = models.ImageField(upload_to='fotos_docentes/')
+
+    def __str__(self):
+        return self.nome
