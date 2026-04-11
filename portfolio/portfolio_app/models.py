@@ -107,3 +107,22 @@ class Formacao(models.Model):
 
     def __str__(self):
         return self.nome
+    
+#Modelo para o MakingOf
+class MakingOf(models.Model):
+    descricaoDecisao = models.TextField()
+    errosEncontrados = models.TextField()
+    justificacaoModelacao = models.TextField()
+    usoAI = models.TextField()
+
+    def __str__(self):
+        return f"MakingOf"
+    
+class MakingOfImagem(models.Model):
+    imagem = models.ImageField(upload_to='imagens_makingof/')
+    legenda = models.TextField()
+
+    makingof = models.ForeignKey(MakingOf, on_delete=models.CASCADE, related_name='imagens')
+
+    def __str__(self):
+        return self.legenda
