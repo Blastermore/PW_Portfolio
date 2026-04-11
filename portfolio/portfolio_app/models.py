@@ -4,10 +4,10 @@ from django.db import models
 
 #Modelo para a licenciatura
 class Licenciatura(models.Model):
-    nome = models.CharField(max_length=200)
-    descricao = models.TextField()
-    creditos = models.IntegerField()
-    instituicao = models.CharField(max_length=200)
+    nome = models.CharField(max_length=200, blank = True, null=True)
+    descricao = models.TextField(blank = True, null=True)
+    creditos = models.IntegerField(blank = True, null=True)
+    instituicao = models.CharField(max_length=200, blank = True, null=True)
 
     class Meta:
         verbose_name = "Licenciatura"
@@ -18,12 +18,12 @@ class Licenciatura(models.Model):
 
 #Modelo para uma Unidade Curricular
 class UnidadeCurricular(models.Model):
-    nome = models.CharField(max_length=200)
-    descricao = models.TextField()
-    creditos = models.IntegerField()
-    avaliacao = models.IntegerField()
-    ano = models.IntegerField()
-    semestre = models.IntegerField()
+    nome = models.CharField(max_length=200, blank = True, null=True)
+    descricao = models.TextField(blank = True, null=True)
+    creditos = models.IntegerField(blank = True, null=True)
+    avaliacao = models.IntegerField(blank = True, null=True)
+    ano = models.IntegerField(blank = True, null=True)
+    semestre = models.IntegerField(blank = True, null=True)
     capa = models.ImageField(upload_to='capa_unidades/', blank=True, null=True)
 
     licenciatura = models.ForeignKey(Licenciatura, on_delete=models.CASCADE)
@@ -179,12 +179,12 @@ class Autor(models.Model):
 
 class TFC(models.Model):
     titulo = models.CharField(max_length=200)
-    resumo = models.TextField()
-    link_pdf = models.URLField()
-    imagem = models.ImageField(upload_to='imagens_tfcs/')
-    rating = models.IntegerField()
+    resumo = models.TextField(blank = True, null=True)
+    link_pdf = models.URLField(blank = True, null=True)
+    imagem = models.ImageField(upload_to='imagens_tfcs/', blank = True, null=True)
+    rating = models.IntegerField(blank = True, null=True)
 
-    autores = models.ManyToManyField(Autor)
+    autores = models.ManyToManyField(Autor, blank = True)
     licenciatura = models.ForeignKey(Licenciatura, on_delete=models.CASCADE)
     orientadores = models.ManyToManyField(Docente, blank = True)
     tecnologias = models.ManyToManyField(Tecnologia, blank = True)
