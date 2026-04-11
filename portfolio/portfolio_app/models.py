@@ -70,7 +70,7 @@ class Tecnologia(models.Model):
 #Modelo para uma COmpetencia  
 class Competencia(models.Model):
     nome = models.CharField(max_length=200)
-    descricao = models.TextField()
+    descricao = models.TextField(blank = True, null=True)
     expertise = models.IntegerField()
 
     tecnologias = models.ManyToManyField(Tecnologia, blank = True)
@@ -107,11 +107,11 @@ class Projeto(models.Model):
 #Modelo para uma Gamejam
 class Gamejam(models.Model):
     nome = models.CharField(max_length=200)
-    nomeJogo = models.CharField(max_length=200)
-    descricao = models.TextField()
+    nomeJogo = models.CharField(max_length=200, blank = True, null = True)
+    descricao = models.TextField(blank = True, null = True)
     linkItch = models.URLField(blank = True)
     imagem = models.ImageField(upload_to='imagens_gamejams/', blank = True, null=True)
-    classificacao = models.IntegerField(blank = True)
+    classificacao = models.IntegerField(blank = True, null = True)
 
     tecnologias = models.ManyToManyField(Tecnologia, blank = True)
     competencias = models.ManyToManyField(Competencia, blank = True)
@@ -126,11 +126,13 @@ class Gamejam(models.Model):
 #Modelo para uma Formação
 class Formacao(models.Model):
     nome = models.CharField(max_length=200)
-    descricao = models.TextField()
-    instituicao = models.CharField(max_length=200)
-    dataInicio = models.DateField()
-    dataFim = models.DateField()
+    descricao = models.TextField(blank = True, null=True)
+    instituicao = models.CharField(max_length=200, blank = True, null=True)
+    dataInicio = models.DateField(blank = True, null=True)
+    dataFim = models.DateField(blank = True, null=True)
+    nivel = models.IntegerField(blank = True, null=True)
 
+    tecnologia = models.ManyToManyField(Tecnologia, blank = True)
     competencias = models.ManyToManyField(Competencia, blank = True)
 
     class Meta:
