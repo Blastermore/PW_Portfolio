@@ -126,3 +126,20 @@ class MakingOfImagem(models.Model):
 
     def __str__(self):
         return self.legenda
+
+class TFC(models.Model):
+    titulo = models.CharField(max_length=200)
+    autores = models.CharField(max_length=200)
+    orientadores = models.CharField(max_length=200)
+    resumo = models.TextField()
+    link_pdf = models.URLField()
+    imagem = models.ImageField(upload_to='imagens_tfcs/')
+    rating = models.IntegerField()
+
+    licenciatura = models.ForeignKey(Licenciatura, on_delete=models.CASCADE)
+    orientadores = models.ManyToManyField(Docente)
+    tecnologias = models.ManyToManyField(Tecnologia)
+    competencias = models.ManyToManyField(Competencia)
+
+    def __str__(self):
+        return self.titulo
