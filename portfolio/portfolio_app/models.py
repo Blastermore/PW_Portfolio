@@ -9,6 +9,10 @@ class Licenciatura(models.Model):
     creditos = models.IntegerField()
     instituicao = models.CharField(max_length=200)
 
+    class Meta:
+        verbose_name = "Licenciatura"
+        verbose_name_plural = "Licenciaturas"
+
     def __str__(self):
         return self.nome
 
@@ -20,10 +24,14 @@ class UnidadeCurricular(models.Model):
     avaliacao = models.IntegerField()
     ano = models.IntegerField()
     semestre = models.IntegerField()
-    capa = models.ImageField(upload_to='capa_unidades/')
+    capa = models.ImageField(upload_to='capa_unidades/', blank=True, null=True)
 
     licenciatura = models.ForeignKey(Licenciatura, on_delete=models.CASCADE)
     docentes = models.ManyToManyField('Docente', blank = True)
+
+    class Meta:
+        verbose_name = "Unidade Curricular"
+        verbose_name_plural = "Unidades Curriculares"
 
     def __str__(self):
         return self.nome
@@ -31,9 +39,13 @@ class UnidadeCurricular(models.Model):
 #Modelo para um Docente
 class Docente(models.Model):
     nome = models.CharField(max_length=200)
-    mail = models.EmailField()
+    mail = models.EmailField(blank = True, null=True)
     resumo = models.TextField(blank=True, null=True)
-    foto = models.ImageField(upload_to='fotos_docentes/')
+    foto = models.ImageField(upload_to='fotos_docentes/',blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Docente"
+        verbose_name_plural = "Docentes"
 
     def __str__(self):
         return self.nome
@@ -48,6 +60,10 @@ class Tecnologia(models.Model):
     websiteOficial = models.URLField()
     review = models.TextField()
 
+    class Meta:
+        verbose_name = "Tecnologia"
+        verbose_name_plural = "Tecnologias"
+
     def __str__(self):
         return self.nome
 
@@ -59,6 +75,10 @@ class Competencia(models.Model):
 
     tecnologias = models.ManyToManyField(Tecnologia, blank = True)
 
+    class Meta:
+        verbose_name = "Competência"
+        verbose_name_plural = "Competências"
+
     def __str__(self):
         return self.nome
     
@@ -67,15 +87,19 @@ class Competencia(models.Model):
 class Projeto(models.Model):
     nome = models.CharField(max_length=200)
     descricao = models.TextField()
-    ano = models.IntegerField()
-    semestre = models.IntegerField()
-    linkItch = models.URLField()
-    imagem = models.ImageField(upload_to='imagens_projetos/')
-    avaliacao = models.IntegerField()
+    ano = models.IntegerField(blank = True)
+    semestre = models.IntegerField(blank = True)
+    linkItch = models.URLField(blank = True)
+    imagem = models.ImageField(upload_to='imagens_projetos/', blank = True)
+    avaliacao = models.IntegerField(blank = True)
 
-    UnidadeCurricular = models.ForeignKey(UnidadeCurricular, on_delete=models.CASCADE)
+    UnidadeCurricular = models.ForeignKey(UnidadeCurricular, on_delete=models.CASCADE, blank = True, null = True)
     tecnologias = models.ManyToManyField(Tecnologia, blank = True)
     competencias = models.ManyToManyField(Competencia, blank = True)
+
+    class Meta:
+        verbose_name = "Projeto"
+        verbose_name_plural = "Projetos"
 
     def __str__(self):
         return self.nome
@@ -85,12 +109,16 @@ class Gamejam(models.Model):
     nome = models.CharField(max_length=200)
     nomeJogo = models.CharField(max_length=200)
     descricao = models.TextField()
-    linkItch = models.URLField()
-    imagem = models.ImageField(upload_to='imagens_gamejams/')
-    classificacao = models.IntegerField()
+    linkItch = models.URLField(blank = True)
+    imagem = models.ImageField(upload_to='imagens_gamejams/', blank = True, null=True)
+    classificacao = models.IntegerField(blank = True)
 
     tecnologias = models.ManyToManyField(Tecnologia, blank = True)
     competencias = models.ManyToManyField(Competencia, blank = True)
+
+    class Meta:
+        verbose_name = "Game Jam"
+        verbose_name_plural = "Game Jams"
 
     def __str__(self):
         return self.nome
@@ -105,6 +133,10 @@ class Formacao(models.Model):
 
     competencias = models.ManyToManyField(Competencia, blank = True)
 
+    class Meta:
+        verbose_name = "Formação"
+        verbose_name_plural = "Formações"
+
     def __str__(self):
         return self.nome
     
@@ -115,6 +147,10 @@ class MakingOf(models.Model):
     justificacaoModelacao = models.TextField()
     usoAI = models.TextField()
 
+    class Meta:
+        verbose_name = "MakingOf"
+        verbose_name_plural = "MakingOfs"
+
     def __str__(self):
         return f"MakingOf"
     
@@ -124,11 +160,19 @@ class MakingOfImagem(models.Model):
 
     makingof = models.ForeignKey(MakingOf, on_delete=models.CASCADE, related_name='imagens')
 
+    class Meta:
+        verbose_name = "MakingOfImagem"
+        verbose_name_plural = "MakingOfImagens"
+
     def __str__(self):
         return self.legenda
 
 class Autor(models.Model):
     nome = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name = "Autor"
+        verbose_name_plural = "Autores"
 
     def __str__(self):
         return self.nome
@@ -145,6 +189,10 @@ class TFC(models.Model):
     orientadores = models.ManyToManyField(Docente, blank = True)
     tecnologias = models.ManyToManyField(Tecnologia, blank = True)
     competencias = models.ManyToManyField(Competencia, blank = True)
+
+    class Meta:
+        verbose_name = "TFC"
+        verbose_name_plural = "TFCs"
 
     def __str__(self):
         return self.titulo
