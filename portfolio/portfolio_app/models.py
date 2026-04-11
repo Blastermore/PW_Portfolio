@@ -38,6 +38,22 @@ class Docente(models.Model):
     def __str__(self):
         return self.nome
     
+#Modelo para um Projeto
+class Projeto(models.Model):
+    nome = models.CharField(max_length=200)
+    descricao = models.TextField()
+    ano = models.IntegerField()
+    semestre = models.IntegerField()
+    linkItch = models.URLField()
+    imagem = models.ImageField(upload_to='imagens_projetos/')
+    avaliacao = models.IntegerField()
+
+    UnidadeCurricular = models.ForeignKey(UnidadeCurricular, on_delete=models.CASCADE)
+    tecnologias = models.ManyToManyField(Tecnologia)
+
+    def __str__(self):
+        return self.nome
+
 #Modelo para um tecnologia
 class Tecnologia(models.Model):
     nome = models.CharField(max_length=200)
