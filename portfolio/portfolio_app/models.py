@@ -127,6 +127,12 @@ class MakingOfImagem(models.Model):
     def __str__(self):
         return self.legenda
 
+class Autor(models.Model):
+    nome = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nome
+
 class TFC(models.Model):
     titulo = models.CharField(max_length=200)
     resumo = models.TextField()
@@ -143,8 +149,3 @@ class TFC(models.Model):
     def __str__(self):
         return self.titulo
 
-class Autor(models.Model):
-    nome = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.nome
