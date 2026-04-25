@@ -1,19 +1,21 @@
 <!-- templates/escola/base.html -->
 
-{% extends "portfolio/base.html" %}
+
 
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escola</title>
+    <title>Unidades Curriculares</title>
 </head>
 <body>
     <header>
-        <h1>Escola</h1>
+        <h1>Unidades Curriculares</h1>
+        <p>As unidades curriculares feitas na minha licenciatura</p>
+        <hr><hr>
+
         <nav>
-            <a href="{% url 'cursos' %}">Cursos</a>   
         </nav>
     </header>
 
@@ -21,6 +23,26 @@
     <main>
         {% block content %}
         <!-- Conteúdo dinâmico -->
+            {% for unidadecurricular in unidadescurriculares %}
+                <article>
+                <!-- cada unidadecurricular é um article, 
+                com um header com o nome do unidadecurricular e do professor, 
+                e uma section com a lista de unidadecurriculars-->
+                    <header>
+                        <h3>{{ unidadecurricular.nome }} - {{unidadecurricular.ano}}.ºano, {{unidadecurricular.semestre}}.º semestre</h3>
+                        {% if unidadecurricular.capa %}
+                            <img src="{{ unidadecurricular.capa.url }}" alt="Capa">
+                        {% else %}
+                            <p>Capa não está disponível</p>
+                        {% endif %}
+                        <p>Professor: {{ unidadecurricular.professor.nome }}</p>
+                        <p>Descrição: {{unidadecurricular.descricao}}</p>
+                        <p>Créditos: {{creditos}}</p>
+                        <p>Avaliação: {{unidadecurricular.avaliacao}}</p>
+                    </header>
+                </article>
+                <hr></hr>
+            {% endfor %}
         {% endblock %}
     </main>
 

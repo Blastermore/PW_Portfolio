@@ -1,6 +1,6 @@
 <!-- templates/escola/base.html -->
 
-{% extends "portfolio/base.html" %}
+
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -11,16 +11,21 @@
 </head>
 <body>
     <header>
-        <h1>Licenciaturas</h1>
+        <h1>Homepage</h1>
         <nav>
-            <a href="{% url 'licenciaturas' %}">Licenciaturas</a>   
-            <a href="{% url 'projetos' %}">Licenciaturas</a>   
-            <a href="{% url 'gamejams' %}">Licenciaturas</a>   
-            <a href="{% url 'makingofs' %}">Licenciaturas</a>   
-            <a href="{% url 'tecnologias' %}">Licenciaturas</a>   
-            <a href="{% url 'competencias' %}">Licenciaturas</a>   
-
+            <ul>
+                <li><a href="{% url 'licenciaturas' %}">Licenciaturas</a></li>
+                <li><a href="{% url 'projetos' %}">Projetos</a></li>   
+                <li><a href="{% url 'gamejams' %}">Game Jams</a></li>   
+                <li><a href="{% url 'makingofs' %}">Making Of</a></li>   
+                <li><a href="{% url 'tecnologias' %}">Tecnologias</a></li>   
+                <li><a href="{% url 'competencias' %}">Competências</a></li>
+            </ul>
         </nav>
+        <hr><hr> 
+        <p>Welcome to my WIP portolio page!</p>
+        <p>My name is Afonso Cunha, I'm 23 and obsessed with making weird and unique games!</p>
+        
     </header>
 
 

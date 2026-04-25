@@ -1,26 +1,37 @@
 <!-- templates/escola/base.html -->
 
-{% extends "portfolio/base.html" %}
 
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escola</title>
+    <title>Licenciaturas</title>
 </head>
 <body>
     <header>
-        <h1>Escola</h1>
+        <h1>Licenciaturas</h1>
         <nav>
-            <a href="{% url 'cursos' %}">Cursos</a>   
         </nav>
+        <hr><hr>
     </header>
 
 
     <main>
         {% block content %}
         <!-- Conteúdo dinâmico -->
+            {% for licenciatura in licenciaturas %}
+            <article>
+            <!-- cada licenciatura é um article, 
+            com um header com o nome do licenciatura e do professor, 
+            e uma section com a lista de licenciaturas-->
+                <header>
+                    <a href="{% url 'unidadescurriculares' %}"> {{licenciatura.nome}}</a>
+                    <p>Descrição: {{ licenciatura.descricao }}</p>
+                    <p>Instituição: {{ licenciatura.instituicao }}</p>
+                </header>
+            </article>
+            {% endfor %}
         {% endblock %}
     </main>
 

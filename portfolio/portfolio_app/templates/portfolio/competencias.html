@@ -1,26 +1,38 @@
 <!-- templates/escola/base.html -->
 
-{% extends "portfolio/base.html" %}
 
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escola</title>
+    <title>Competências</title>
 </head>
 <body>
     <header>
-        <h1>Escola</h1>
+        <h1>Competências</h1>
         <nav>
-            <a href="{% url 'cursos' %}">Cursos</a>   
         </nav>
+        <hr><hr>
     </header>
 
 
     <main>
         {% block content %}
         <!-- Conteúdo dinâmico -->
+            {% for competencia in competencias %}
+                <article>
+                <!-- cada competencia é um article, 
+                com um header com o nome do competencia e do professor, 
+                e uma section com a lista de competencias-->
+                    <header>
+                        <h3>{{ competencia.nome }}</h3>
+                        <p>Descrição: {{ competencia.descricao }}</p>
+                        <p>Avaliação: {{ competencia.expertise }}/5</p>
+                    </header>
+                </article>
+                <hr><hr>
+                {% endfor %}
         {% endblock %}
     </main>
 

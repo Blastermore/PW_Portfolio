@@ -1,26 +1,37 @@
 <!-- templates/escola/base.html -->
 
-{% extends "portfolio/base.html" %}
+
 
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escola</title>
+    <title>Tecnologias</title>
 </head>
 <body>
     <header>
-        <h1>Escola</h1>
+        <h1>Tecnologias</h1>
         <nav>
-            <a href="{% url 'cursos' %}">Cursos</a>   
         </nav>
+        <hr><hr>
     </header>
 
 
     <main>
         {% block content %}
-        <!-- Conteúdo dinâmico -->
+            {% for tecnologia in tecnologias %}
+            <article>
+            <!-- cada tecnologia é um article, 
+            com um header com o nome do tecnologia e do professor, 
+            e uma section com a lista de tecnologias-->
+                <header>
+                    <h3>{{ tecnologia.nome }}</h3>
+                    <img src="{{ tecnologia.logo.url }}" alt="logo do logotipo {{ tecnologia.logo.name }}">
+                    <p>Expertise: {{ tecnologia.expertise }}</p>
+                </header>
+            </article>
+            {% endfor %}
         {% endblock %}
     </main>
 

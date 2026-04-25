@@ -1,26 +1,35 @@
 <!-- templates/escola/base.html -->
 
-{% extends "portfolio/base.html" %}
 
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escola</title>
+    <title>Game Jams</title>
 </head>
 <body>
     <header>
-        <h1>Escola</h1>
+        <h1>Game Jams</h1>
+        <p>Várias game jams em que participei :D</p>
         <nav>
-            <a href="{% url 'cursos' %}">Cursos</a>   
         </nav>
+        <hr><hr>
     </header>
 
 
     <main>
         {% block content %}
         <!-- Conteúdo dinâmico -->
+            {% for gamejam in gamejams %}
+                <article>
+                    <h2>{{gamejam.nome}}</h2>
+                    <p>Nome do meu jogo: {{gamejam.nomeJogo}}</p>
+                    <a href = "{{gamejam.linkItch}}">Link itch.io</a>
+                    <p>Descrição: {{gamejam.descricao}}</p>
+                </article>
+                <hr></hr>
+            {% endfor %}
         {% endblock %}
     </main>
 

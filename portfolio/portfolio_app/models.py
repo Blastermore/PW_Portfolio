@@ -67,7 +67,7 @@ class Tecnologia(models.Model):
     def __str__(self):
         return self.nome
 
-#Modelo para uma COmpetencia  
+#Modelo para uma Competencia  
 class Competencia(models.Model):
     nome = models.CharField(max_length=200)
     descricao = models.TextField(blank = True, null=True)

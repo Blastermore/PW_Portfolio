@@ -17,4 +17,5 @@ urlpatterns = [
     path('makingofimagens/', views.makingofimagens_view, name="makingofimagens"), #posso tirar se depois n quiser dar uma pagina inteira as imagens
     path('autores/', views.autores_view, name="autores"),
     path('tfcs/', views.tfcs_view, name="tfcs"),
+    
 ]
