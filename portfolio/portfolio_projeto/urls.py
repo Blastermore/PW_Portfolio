@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("escola/", admin.site.urls), #rota para aplicação web escola
+    path("escola/", include("escola.url")), #rota para aplicação web escola
 ]
 
 if settings.DEBUG:
