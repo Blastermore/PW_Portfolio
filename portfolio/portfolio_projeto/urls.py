@@ -26,7 +26,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("portfolio/", include("portfolio_app.urls")), 
     path("escola/", include("escola.urls")), 
-    path("", include("escola.urls"))
+    path("", include("portfolio_app.urls"))
 ]
 
 if settings.DEBUG:

@@ -4,7 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.licenciaturas_view),   #  rota que abre diretamente a página das licenciaturas
+    path('', views.home_view),   #  rota que abre diretamente a página home
     path('licencitauras/', views.licencitauras_view, name="licencitauras"),
     path('unidadescurriculares/', views.unidadescurriculares_view, name="unidadescurriculares"),
     path('docentes/', views.docentes_view, name="docentes"),

@@ -3,6 +3,9 @@ from .models import Licenciatura, UnidadeCurricular, Docente, Tecnologia, Compet
 
 # Create your views here.
 
+def home_view(request):
+    return render(request, 'portfolio/home.html')
+
 def licenciaturas_view(request):
     licenciaturas = Licenciatura.objects.all()
     return render(request, 'portfolio/licenciaturas.html', {'licenciaturas': licenciaturas})
