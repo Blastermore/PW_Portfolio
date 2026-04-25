@@ -21,9 +21,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("escola/", include("escola.url")), #rota para aplicação web escola
+    path("escola/", include("escola.urls")), 
+    path("", include("escola.urls"))
 ]
 
 if settings.DEBUG:
