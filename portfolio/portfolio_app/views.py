@@ -12,7 +12,7 @@ def licenciaturas_view(request):
 
 def unidadescurriculares_view(request):
     unidadescurriculares = UnidadeCurricular.objects.all()
-    return render(request, 'portfolio/unidadecurriculars.html', {'unidadecurriculars': unidadecurriculars})
+    return render(request, 'portfolio/unidadescurriculars.html', {'unidadescurriculars': unidadescurriculares})
 
 def docentes_view(request):
     docentes = Docente.objects.all()

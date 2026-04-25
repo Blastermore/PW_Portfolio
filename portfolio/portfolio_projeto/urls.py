@@ -21,12 +21,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("portfolio/", include("portfolio_app.urls")), 
-    path("escola/", include("escola.urls")), 
-    path("", include("portfolio_app.urls"))
+    path("", include("portfolio_app.urls")),   # homepage aqui
+    path("portfolio/", include("portfolio_app.urls")),
+    path("escola/", include("escola.urls")),
 ]
 
 if settings.DEBUG:

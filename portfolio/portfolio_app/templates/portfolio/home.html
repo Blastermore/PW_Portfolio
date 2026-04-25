@@ -1,17 +1,25 @@
 <!-- templates/escola/base.html -->
 
+{% extends "portfolio/base.html" %}
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escola</title>
+    <title>Home</title>
 </head>
 <body>
     <header>
-        <h1>Escola</h1>
+        <h1>Licenciaturas</h1>
         <nav>
-            <a href="{% url 'cursos' %}">Cursos</a>   
+            <a href="{% url 'licenciaturas' %}">Licenciaturas</a>   
+            <a href="{% url 'projetos' %}">Licenciaturas</a>   
+            <a href="{% url 'gamejams' %}">Licenciaturas</a>   
+            <a href="{% url 'makingofs' %}">Licenciaturas</a>   
+            <a href="{% url 'tecnologias' %}">Licenciaturas</a>   
+            <a href="{% url 'competencias' %}">Licenciaturas</a>   
+
         </nav>
     </header>
 

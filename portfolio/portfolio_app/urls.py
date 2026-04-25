@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home_view),   #  rota que abre diretamente a página home
-    path('licencitauras/', views.licencitauras_view, name="licencitauras"),
+    path('licenciaturas/', views.licenciaturas_view, name="licenciaturas"),
     path('unidadescurriculares/', views.unidadescurriculares_view, name="unidadescurriculares"),
     path('docentes/', views.docentes_view, name="docentes"),
     path('tecnologias/', views.tecnologias_view, name="tecnologias"),
