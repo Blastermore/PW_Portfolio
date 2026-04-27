@@ -1,26 +1,34 @@
-<!-- templates/escola/base.html -->
-
-{% extends "portfolio/base.html" %}
-
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escola</title>
+    <title>Formacoes</title>
 </head>
 <body>
     <header>
-        <h1>Escola</h1>
+        <h1>Formações</h1>
+        <p>Várias formações que fui fazendo :D</p>
         <nav>
-            <a href="{% url 'cursos' %}">Cursos</a>   
         </nav>
+        <hr><hr>
     </header>
 
 
     <main>
         {% block content %}
         <!-- Conteúdo dinâmico -->
+            <a href="{% url 'novo_formacao' %}"><button>Inserir nova Formação</button></a>
+            {% for formacao in formacaos %}
+                <article>
+                    <h2>{{formacao.nome}}</h2>
+                    <p>Descrição: {{formacao.descricao}}</p>
+                    <p>Associado a {{formacao.intituicao}}, comecei a {{formacao.dataInicio} e terminei a {{formacao.dataFim}</p>
+                    <a href="{% url 'editar_formacao' formacao.id %}"> <button>Editar informação da Formação</button></a>
+                    <a href="{% url 'apagar_formacao' formacao.id %}"> <button>Apagar a Formação</button></a>
+                </article>
+                <hr></hr>
+            {% endfor %}
         {% endblock %}
     </main>
 

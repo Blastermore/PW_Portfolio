@@ -20,7 +20,7 @@
     <main>
         {% block content %}
         <!-- Conteúdo dinâmico -->
-          <a href="{% url 'novo_projeto' %}"><button>Inserir novo Projeto</button></a>
+            <a href="{% url 'novo_projeto' %}"><button>Inserir novo Projeto</button></a>
             {% for projeto in projetos %}
             <article>
             <!-- cada projeto é um article, 

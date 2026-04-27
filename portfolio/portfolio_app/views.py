@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Licenciatura, UnidadeCurricular, Docente, Tecnologia, Competencia, Projeto, Gamejam, Formacao, MakingOf, MakingOfImagem, Autor, TFC
-from .forms import ProjetoForm,TecnologiaForm, CompetenciaForm
+from .forms import ProjetoForm,TecnologiaForm, CompetenciaForm, FormacaoForm
 
 # Create your views here.
 
@@ -122,6 +122,34 @@ def gamejams_view(request):
 def formacoes_view(request):
     formacoes = Formacao.objects.all()
     return render(request, 'portfolio/formacoes.html', {'formacoes': formacoes})
+
+def novo_formacao_view(request):
+    form = FormacaoForm(request.POST, request.FILES)
+    if form.isValid():
+        form.save()
+        return redirect('formacoes')
+
+    context = {'form': form}
+    return render(request, 'portfolio/novo_formacao.html', context)
+
+def editar_formacao_view(request):
+    formacao = formacao.get(formacao, id=id)
+    if request.POST:
+        form = FormacaoForm(request.POST or None, request.FILES, instance=formacao)
+        if form.is_valid():
+            form.save()
+            return redirect('formacoes')
+    else:
+        form = FormacaoForm(instance=formacao)  # cria formulário com dados da instância autor
+
+    context = {'form': form}
+    return render(request, 'portfolio/editar_formacao.html', context)
+
+def apagar_formacao_view(request, formacao_id):
+    formacao = formacao.get(formacao, id=formacao_id)
+    formacao.delete()
+    
+    return redirect('formacoes')
 
 def makingofs_view(request):
     makingofs = MakingOf.objects.all()

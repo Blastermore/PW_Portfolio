@@ -29,4 +29,8 @@ urlpatterns = [
     path('competencia/novo', views.novo_competencia_view, name="novo_competencia"),
     path('competencia/<int:competencia_id>/editar', views.editar_competencia_view, name="editar_competencia"),
     path('competencia/<int:competencia_id>/apaga', views.apagar_competencia_view,name="apagar_competencia"),
+
+    path('formacao/novo', views.novo_formacao_view, name="novo_formacao"),
+    path('formacao/<int:formacao_id>/editar', views.editar_formacao_view, name="editar_formacao"),
+    path('formacao/<int:formacao_id>/apaga', views.apagar_formacao_view,name="apagar_formacao"),
 ]

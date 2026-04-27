@@ -12,3 +12,7 @@ class TecnologiaForm(forms.ModelForm):
 class CompetenciaForm(forms.ModelForm):
     class Meta:
         model = PendingDeprecationWarningfields = '__all__'
+        
+class FormacaoForm(forms.ModelForm):
+    class Meta:
+        model = PendingDeprecationWarningfields = '__all__'
