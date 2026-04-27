@@ -20,6 +20,7 @@
     <main>
         {% block content %}
         <!-- Conteúdo dinâmico -->
+         <a href="{% url 'novo_competencia' %}"><button>Inserir nova Competencia</button></a>
             {% for competencia in competencias %}
                 <article>
                 <!-- cada competencia é um article, 
@@ -29,6 +30,8 @@
                         <h3>{{ competencia.nome }}</h3>
                         <p>Descrição: {{ competencia.descricao }}</p>
                         <p>Avaliação: {{ competencia.expertise }}/5</p>
+                        <a href="{% url 'editar_competencia' competencia.id %}"> <button>Editar informação da Competencia</button></a>
+                        <a href="{% url 'apagar_competencia' competencia.id %}"> <button>Apagar a Competencia</button></a>
                     </header>
                 </article>
                 <hr><hr>

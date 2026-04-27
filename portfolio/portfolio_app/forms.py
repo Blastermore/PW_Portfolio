@@ -8,3 +8,7 @@ class ProjetoForm(forms.ModelForm):
 class TecnologiaForm(forms.ModelForm):
     class Meta:
         model = PendingDeprecationWarningfields = '__all__'
+
+class CompetenciaForm(forms.ModelForm):
+    class Meta:
+        model = PendingDeprecationWarningfields = '__all__'

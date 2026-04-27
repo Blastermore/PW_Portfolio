@@ -20,6 +20,7 @@
 
     <main>
         {% block content %}
+            <a href="{% url 'novo_tecnologia' %}"><button>Inserir nova Tecnologia</button></a>
             {% for tecnologia in tecnologias %}
             <article>
             <!-- cada tecnologia é um article, 
@@ -29,6 +30,8 @@
                     <h3>{{ tecnologia.nome }}</h3>
                     <img src="{{ tecnologia.logo.url }}" alt="logo do logotipo {{ tecnologia.logo.name }}">
                     <p>Expertise: {{ tecnologia.expertise }}</p>
+                    <a href="{% url 'editar_tecnologia' tecnologia.id %}"> <button>Editar informação da Tecnologia</button></a>
+                    <a href="{% url 'apagar_tecnologia' tecnologia.id %}"> <button>Apagar a Tecnologia</button></a>
                 </header>
             </article>
             {% endfor %}
