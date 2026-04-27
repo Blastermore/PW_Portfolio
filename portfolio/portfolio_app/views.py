@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Licenciatura, UnidadeCurricular, Docente, Tecnologia, Competencia, Projeto, Gamejam, Formacao, MakingOf, MakingOfImagem, Autor, TFC
 from .forms import ProjetoForm
 
@@ -32,8 +32,22 @@ def projetos_view(request):
     return render(request, 'portfolio/projetos.html', {'projetos': projetos})
 
 def projeto_create(request):
-    form = ProjetoForm(request.POST, request.Files)
-    return render(request, 'portfolio/projetoform.html', {'form': form})
+    form = ProjetoForm(request.POST, request.FILES)
+    context = {'form': form}
+    return render(request, 'portfolio/projetoform.html', context)
+
+def projeto_edit(request):
+    projeto = Projeto.get(Projeto, id=id)
+    if request.POST:
+        form = ProjetoForm(request.POST or None, request.FILES, instance=projeto)
+        if form.is_valid():
+            form.save()
+            return redirect('projetos')
+    else:
+        form = ProjetoForm(instance=projeto)  # cria formulário com dados da instância autor
+
+    context = {'form': form}
+    return render(request, 'portfolio/projetoform.html', context)
 
 def gamejams_view(request):
     gamejams = Gamejam.objects.all()
