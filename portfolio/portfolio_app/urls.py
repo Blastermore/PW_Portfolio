@@ -17,5 +17,7 @@ urlpatterns = [
     path('makingofimagens/', views.makingofimagens_view, name="makingofimagens"), #posso tirar se depois n quiser dar uma pagina inteira as imagens
     path('autores/', views.autores_view, name="autores"),
     path('tfcs/', views.tfcs_view, name="tfcs"),
-    
+    path('projeto/novo', views.novo_projeto_view, name="novo_projeto"),
+    path('projeto/<int:projeto_id>/editar', views.editar_projeto_view, name="editar_projeto"),
+    path('projeto/<int:projeto_id>/apaga', views.apagar_projeto_view,name="apagar_projeto"),
 ]

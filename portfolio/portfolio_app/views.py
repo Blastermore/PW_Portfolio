@@ -31,12 +31,16 @@ def projetos_view(request):
     projetos = Projeto.objects.all()
     return render(request, 'portfolio/projetos.html', {'projetos': projetos})
 
-def projeto_create(request):
+def novo_projeto_view(request):
     form = ProjetoForm(request.POST, request.FILES)
+    if form.isValid():
+        form.save()
+        return redirect('autores')
+
     context = {'form': form}
     return render(request, 'portfolio/projetoform.html', context)
 
-def projeto_edit(request):
+def editar_projeto_view(request):
     projeto = Projeto.get(Projeto, id=id)
     if request.POST:
         form = ProjetoForm(request.POST or None, request.FILES, instance=projeto)
@@ -48,6 +52,12 @@ def projeto_edit(request):
 
     context = {'form': form}
     return render(request, 'portfolio/projetoform.html', context)
+
+def apagar_projeto_view(request):
+    projeto = Projeto.get(Projeto, id=id)
+    projeto.delete()
+    
+    return redirect('projetos')
 
 def gamejams_view(request):
     gamejams = Gamejam.objects.all()

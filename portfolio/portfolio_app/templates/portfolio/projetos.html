@@ -20,6 +20,7 @@
     <main>
         {% block content %}
         <!-- Conteúdo dinâmico -->
+          <a href="{% url 'novo_projeto' %}"><button>Inserir novo Projeto</button></a>
             {% for projeto in projetos %}
             <article>
             <!-- cada projeto é um article, 
@@ -30,6 +31,8 @@
                     <img src="{{ projeto.logo.url }}" alt="logo do logotipo {{ projeto.logo.name }}">
                     <p>Descrição: {{ projeto.descricao }}</p>
                     <p>Avaliação: {{ projeto.avaliacao }}</p>
+                    <a href="{% url 'editar_projeto' projeto.id %}"> <button>Editar informação do Projeto</button></a>
+                    <a href="{% url 'apagar_projeto' projeto.id %}"> <button>Apagar o Projeto</button></a>
                 </header>
             </article>
             {% endfor %}
