@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Licenciatura, UnidadeCurricular, Docente, Tecnologia, Competencia, Projeto, Gamejam, Formacao, MakingOf, MakingOfImagem, Autor, TFC
+from .forms import ProjetoForm
 
 # Create your views here.
 
@@ -29,6 +30,10 @@ def competencias_view(request):
 def projetos_view(request):
     projetos = Projeto.objects.all()
     return render(request, 'portfolio/projetos.html', {'projetos': projetos})
+
+def projeto_create(request):
+    form = ProjetoForm(request.POST, request.Files)
+    return render(request, 'portfolio/projetoform.html', {'form': form})
 
 def gamejams_view(request):
     gamejams = Gamejam.objects.all()
