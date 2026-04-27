@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Licenciatura, UnidadeCurricular, Docente, Tecnologia, Competencia, Projeto, Gamejam, Formacao, MakingOf, MakingOfImagem, Autor, TFC
-from .forms import ProjetoForm
+from .forms import ProjetoForm,TecnologiaForm
 
 # Create your views here.
 
@@ -22,6 +22,34 @@ def docentes_view(request):
 def tecnologias_view(request):
     tecnologias = Tecnologia.objects.all()
     return render(request, 'portfolio/tecnologias.html', {'tecnologias': tecnologias})
+
+def novo_tecnologia_view(request):
+    form = TecnologiaForm(request.POST, request.FILES)
+    if form.isValid():
+        form.save()
+        return redirect('tecnologias')
+
+    context = {'form': form}
+    return render(request, 'portfolio/novo_tecnologia.html', context)
+
+def editar_tecnologia_view(request):
+    tecnologia = Tecnologia.get(tecnologia, id=id)
+    if request.POST:
+        form = TecnologiaForm(request.POST or None, request.FILES, instance=tecnologia)
+        if form.is_valid():
+            form.save()
+            return redirect('tecnologias')
+    else:
+        form = TecnologiaForm(instance=tecnologia)  # cria formulário com dados da instância autor
+
+    context = {'form': form}
+    return render(request, 'portfolio/editar_tecnologia.html', context)
+
+def apagar_tecnologia_view(request, tecnologia_id):
+    tecnologia = Tecnologia.get(tecnologia, id=tecnologia_id)
+    tecnologia.delete()
+    
+    return redirect('tecnologias')
 
 def competencias_view(request):
     competencias = Competencia.objects.all()

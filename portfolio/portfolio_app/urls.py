@@ -17,7 +17,12 @@ urlpatterns = [
     path('makingofimagens/', views.makingofimagens_view, name="makingofimagens"), #posso tirar se depois n quiser dar uma pagina inteira as imagens
     path('autores/', views.autores_view, name="autores"),
     path('tfcs/', views.tfcs_view, name="tfcs"),
+
     path('projeto/novo', views.novo_projeto_view, name="novo_projeto"),
     path('projeto/<int:projeto_id>/editar', views.editar_projeto_view, name="editar_projeto"),
     path('projeto/<int:projeto_id>/apaga', views.apagar_projeto_view,name="apagar_projeto"),
+
+    path('tecnologia/novo', views.novo_tecnologia_view, name="novo_tecnologia"),
+    path('tecnologia/<int:tecnologia_id>/editar', views.editar_tecnologia_view, name="editar_tecnologia"),
+    path('tecnologia/<int:tecnologia_id>/apaga', views.apagar_tecnologia_view,name="apagar_tecnologia"),
 ]
