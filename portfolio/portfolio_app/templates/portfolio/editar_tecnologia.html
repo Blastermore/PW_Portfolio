@@ -1,9 +1,9 @@
 {% extends 'biblioteca/layout.html' %}
 
 {% block content %}
-    <h3>Editar Projeto</h3>
+    <h3>Editar Tecnologia</h3>
     
-    <form action="{% url 'editar_projeto' projeto.id %}" method="post" enctype='multipart/form-data'>
+    <form action="{% url 'editar_tecnologia' tecnologia.id %}" method="post" enctype='multipart/form-data'>
       {% csrf_token %}
       {{ form.as_p }}
       <input type="submit">
