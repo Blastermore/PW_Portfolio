@@ -9,8 +9,8 @@ class Artigo(models.Model):
     link_externo = models.URLField(blank = True, null = True)
     data_criacao = models.DateTimeField(auto_now = True)
     
-    autor = models.ForeignKey(User, on_delete=CASCADE, related_names = 'artigos')
-    likes = models.ForeignKey(User, blank =True, related_names = 'likes_artigos')
+    autor = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'artigos')
+    likes = models.ForeignKey(User, on_delete=models.CASCADE, blank =True, related_name = 'likes_artigos')
 
     def total_total_likes(self):
         return self.likes.count()
@@ -22,5 +22,5 @@ class Comentario(models.Model):
     texto = models.TextField()
     data_criacao = models.DateTimeField(auto_now_add = True)
     
-    artigo = models.ForeignKey(Artigo, on_delete=CASCADE, related_names = 'comentarios')
-    autor = models.ForeignKey(User, on_delete='CASCADE', related_name = 'comentarios')
+    artigo = models.ForeignKey(Artigo, on_delete=models.CASCADE, related_name = 'comentarios')
+    autor = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'comentarios')
