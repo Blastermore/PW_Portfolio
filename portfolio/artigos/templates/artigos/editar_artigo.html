@@ -1,0 +1,18 @@
+
+{% block main %}
+
+<h1>Editar artigo</h1>
+
+<form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Atualizar
+    </button>
+
+</form>
+
+{% endblock %}

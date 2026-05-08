@@ -1,10 +1,10 @@
 ## escola/urls.py
 
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.home_view),   #  rota que abre diretamente a página home
+    path('', views.home_view, name = "home"),   #  rota que abre diretamente a página home
     path('licenciaturas/', views.licenciaturas_view, name="licenciaturas"),
     path('unidadescurriculares/', views.unidadescurriculares_view, name="unidadescurriculares"),
     path('docentes/', views.docentes_view, name="docentes"),
@@ -33,4 +33,5 @@ urlpatterns = [
     path('formacao/novo', views.novo_formacao_view, name="novo_formacao"),
     path('formacao/<int:formacao_id>/editar', views.editar_formacao_view, name="editar_formacao"),
     path('formacao/<int:formacao_id>/apaga', views.apagar_formacao_view,name="apagar_formacao"),
+
 ]

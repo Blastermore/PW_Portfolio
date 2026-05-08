@@ -1,0 +1,65 @@
+
+{% block main %}
+
+<h1>{{ artigo.titulo }}</h1>
+
+<p>{{ artigo.texto }}</p>
+
+{% if artigo.fotografia %}
+    <img src="{{ artigo.fotografia.url }}" width="400">
+{% endif %}
+
+<p>Autor: {{ artigo.autor }}</p>
+
+<p>Likes: {{ artigo.total_likes }}</p>
+
+<a href="{% url 'like_artigo' artigo.id %}">
+    Like
+</a>
+
+<br><br>
+
+{% if request.user == artigo.autor %}
+    <a href="{% url 'editar_artigo' artigo.id %}">
+        Editar artigo
+    </a>
+{% endif %}
+
+<hr>
+
+<h2>Comentários</h2>
+
+{% for comentario in comentarios %}
+
+    <p>
+        <strong>{{ comentario.autor }}</strong>
+    </p>
+
+    <p>{{ comentario.texto }}</p>
+
+    <hr>
+
+{% endfor %}
+
+{% if request.user.is_authenticated %}
+
+    <form method="post"
+          action="{% url 'adicionar_comentario' artigo.id %}">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Comentar
+        </button>
+
+    </form>
+
+{% else %}
+
+    <p>É favor fazer login para comentar.</p>
+
+{% endif %}
+
+{% endblock %}
