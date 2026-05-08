@@ -10,9 +10,9 @@ class Artigo(models.Model):
     data_criacao = models.DateTimeField(auto_now = True)
     
     autor = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'artigos')
-    likes = models.ForeignKey(User, on_delete=models.CASCADE, blank =True, related_name = 'likes_artigos')
+    likes = models.ManyToManyField(User, blank =True, related_name = 'likes_artigos')
 
-    def total_total_likes(self):
+    def total_likes(self):
         return self.likes.count()
     
     def __str__(self):

@@ -17,6 +17,11 @@
     </a>
 {% endif %}
 
+<br><br>
+
+<a href="{% url 'home' %}">
+    <button>Voltar à homepage</button>
+</a>
 <hr>
 
 {% for artigo in artigos %}
@@ -27,7 +32,17 @@
 
     <p>Autor: {{ artigo.autor }}</p>
 
-    <p>Likes: {{ artigo.total_likes }}</p>
+    <form method="post" action="{% url 'like_artigo' artigo.id %}?next={{ request.path }}">
+        {% csrf_token %}
+        <button type="submit">
+            {% if user in artigo.likes.all %}
+                💔 Unlike
+            {% else %}
+                ❤️ Like
+            {% endif %}
+            ({{ artigo.likes.count }})
+        </button>
+    </form>
 
     <a href="{% url 'detalhe_artigo' artigo.id %}">
         Ler mais

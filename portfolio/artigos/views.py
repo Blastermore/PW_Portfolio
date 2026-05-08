@@ -104,15 +104,18 @@ def like_artigo(request, artigo_id):
     artigo = get_object_or_404(Artigo, id=artigo_id)
 
     if request.user in artigo.likes.all():
-
         artigo.likes.remove(request.user)
-
     else:
-
         artigo.likes.add(request.user)
 
-    return redirect('detalhe_artigo', artigo.id)
+    # volta para onde veio
+    next_url = request.GET.get('next')
 
+    if next_url:
+        return redirect(next_url)
+
+    else:
+        return redirect('lista_artigos')
 
 def login_view(request):
 
@@ -128,11 +131,19 @@ def login_view(request):
             password=password
         )
 
+        next_url = request.GET.get('next')
+
         if user is not None:
 
             login(request, user)
 
-            return redirect('lista_artigos')
+            if next_url:
+
+                return redirect(next_url)
+
+            
+            else:
+                return redirect('lista_artigos')
 
         else:
 

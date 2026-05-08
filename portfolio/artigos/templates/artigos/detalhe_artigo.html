@@ -11,11 +11,17 @@
 
 <p>Autor: {{ artigo.autor }}</p>
 
-<p>Likes: {{ artigo.total_likes }}</p>
-
-<a href="{% url 'like_artigo' artigo.id %}">
-    Like
-</a>
+<form method="post" action="{% url 'like_artigo' artigo.id %}?next={{ request.path }}">
+    {% csrf_token %}
+    <button type="submit">
+        {% if user in artigo.likes.all %}
+            💔 Unlike
+        {% else %}
+            ❤️ Like
+        {% endif %}
+        ({{ artigo.likes.count }})
+    </button>
+</form>
 
 <br><br>
 
@@ -61,5 +67,10 @@
     <p>É favor fazer login para comentar.</p>
 
 {% endif %}
+
+<a href="{% url 'lista_artigos' %}">
+    <button>Voltar</button>
+</a>
+
 
 {% endblock %}

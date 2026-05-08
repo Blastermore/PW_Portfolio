@@ -23,6 +23,8 @@
 
 </form>
 
+<form method="post" action="{% url 'like_artigo' artigo.id %}?next={{ request.path }}">
+    
 {% if erro %}
     <p>{{ erro }}</p>
 {% endif %}
