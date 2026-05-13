@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'cloudinary',
+    'cloudinary_storage',
 
     "portfolio_app",
     "escola",
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "portfolio_projeto.urls"
@@ -92,11 +95,36 @@ env = environ.Env()
 # ler ficheiro .env (opcional mas recomendado)
 environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
-## definicao da base de dados psql em Neon
-DATABASES = {
-    "default": env.db("DATABASE_URL")
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': env('dtpeahael'),
+    'API_KEY': env('834524823413596'),
+    'API_SECRET': env('TkzbNwsazhIKLNMdneb_UzruZrc'),
 }
 
+## definicao da base de dados psql em Neon
+DATABASES = {
+    "default": {
+        **env.db("DATABASE_URL"),
+        "CONN_MAX_AGE": 600,
+        "CONN_HEALTH_CHECKS": True,
+        "OPTIONS": {
+            "sslmode": "require",
+        },
+    }
+}
+# settings.py
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -134,5 +162,15 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
+# STORAGES = {
+#     "default": {
+#         "BACKEND": "django.core.files.storage.FileSystemStorage",
+#     },
+#     "staticfiles": {
+#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+#     },
+# }
+
+#MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+#MEDIA_URL = "/media/"
+
